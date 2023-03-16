@@ -14,7 +14,15 @@ rooms = [
     ["throne room", {"south": "guard Hall"}],
     ["lower Dungeons", {"west": "Main Hall"}],
     ["guard Hall", {"north": "throne room", "south": "Main Hall"}],
-    ["Main Hall", {"north": "guard Hall", "east": "lower Dungeons", "south": "courtyard", "west": "jail cells"}]
+    [
+        "Main Hall",
+        {
+            "north": "guard Hall",
+            "east": "lower Dungeons",
+            "south": "courtyard",
+            "west": "jail cells",
+        },
+    ],
 ]
 # Sets the starting location for player
 current_location = "Main Hall"
@@ -39,8 +47,9 @@ while True:
         print(f"\nYou're currently in {current_location.capitalize()}\n")
         # Used to find the current room player is in using the current location variable
         # and possible directions player can go within that room
-        current_room = next((room for room in rooms if room[0] == current_location), None)
-        # IDK what this line does pls help
+        current_room = next(
+            (room for room in rooms if room[0] == current_location), None
+        )
         if current_room is not None:
             # Prints out list of possible directions within the current room player is in
             for direction in current_room[1]:
@@ -51,8 +60,13 @@ while True:
         print("\n")
         choice_direc = input("Select a direction: ").lower()
         print("\n")
-        # IDK what this does either below
-        input_direction = next((direction for direction in current_room[1] if direction == choice_direc), None)
+        # If a valid direction is chosen then it runs the following
+        # The users direction is checked with a corresponding room within the rooms list
+        # possible within their current room
+        input_direction = next(
+            (direction for direction in current_room[1] if direction == choice_direc),
+            None,
+        )
         if input_direction is not None:
             # Prints out the players location after they select a direction to go in
             current_location = current_room[1][input_direction]
