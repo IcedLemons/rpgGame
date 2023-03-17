@@ -1,7 +1,7 @@
 # ---------------------------------------------
 # Created By : Ben Chu
 # Created Date : 15/03/23
-# Version = '3'
+# Version = '3.0'
 # ---------------------------------------------
 
 actions = ["heal", "attack", "defend", "explore", "quit"]
