@@ -12,3 +12,4 @@ update - games name
 added - change log
 fixed - movement so player can not walk off "map"
 fixed - shortened and optimized code to be more versatile - easy to update and add things
+added - made a movement function
