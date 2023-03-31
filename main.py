@@ -4,7 +4,7 @@
 # Class: CS 30
 # Date : 21/03/23
 # Coders Name:  Ben Chu
-# Version:'3.0'
+# Version:'4.0'
 # ---------------------------------------------
 '''
 Current Assignment: RPG Inventory
@@ -14,86 +14,7 @@ and rooms that the player can access,
 it has been updated to house a user inventory.
 '''
 # =============================================================================
-# Lists and Dictionaries
-# Actions list containing possible actions input by player
-actions = ["explore", "search", "inventory", "quit"]
-# Items dictionary with the room item can be found in and its description
-items = {
-  "Courtyard": {
-    "item": ["sword"],
-    "description": [
-      "A gleaming sword you pulled out of stone left untouched" +
-      " and exposed to elements for centuries but still razor sharp"
-    ],
-  },
-  "Jail Cells": {
-    "item": ["set of shackles"],
-    "description": [
-      """A set of shackles with not one spot of rust, 
-the material is unknown"""
-    ],
-  },
-  "Throne Room": {
-    "item": ["crown"],
-    "description": [
-      """A golden crown found sitting on the throne, 
-the crown is studded with gems, the large glowing purple gem 
-on the front of the crown catches your attention"""
-    ],
-  },
-  "Lower Dungeons": {
-    "item": ["key"],
-    "description": [
-      """You found a mysterious bronze skeleton key hanging from a wall, 
-which door is this for?"""
-    ],
-  },
-  "Guard Hall": {
-    "item": ["shield"],
-    "description": [
-      """This sturdy shield may be useful later on, 
-it is lined with the same unbreakable material as the shackles 
-and the main body out of a wood as hard as iron"""
-    ],
-  },
-  "Main Hall": {
-    "item": ["map"],
-    "description": [
-      """This map displayed several mysterious caves 
-and cliffs with some shadowed area, 
-the castle is located in the middle of the map"""
-    ],
-  },
-}
-# Rooms list containing possible rooms and directions user can go in
-# once in said room
-rooms = [
-  ["Courtyard", {
-    "north": "Main Hall"
-  }],
-  ["Jail Cells", {
-    "east": "Main Hall"
-  }],
-  ["Throne Room", {
-    "south": "Guard Hall",
-  }],
-  ["Lower Dungeons", {
-    "west": "Main Hall"
-  }],
-  ["Guard Hall", {
-    "north": "Throne Room",
-    "south": "Main Hall"
-  }],
-  [
-    "Main Hall",
-    {
-      "north": "Guard Hall",
-      "east": "Lower Dungeons",
-      "south": "Courtyard",
-      "west": "Jail Cells",
-    },
-  ],
-]
+import database
 # Global variable containging players current location
 current_location = "Main Hall"
 # Empty list to be filled with items player discover
@@ -110,7 +31,7 @@ def movement():
   then moves user into room under the input location the player selected
   '''
   global current_location
-  current_room = next((room for room in rooms if room[0] == current_location),
+  current_room = next((room for room in database.rooms if room[0] == current_location),
                       None)
   if current_room is not None:
     for direction in current_room[1]:
@@ -130,18 +51,17 @@ def movement():
 # Search function
 def find():
   '''
-  Locates items that are under the room name of the current location 
-  and adds them to inventory list while 
-  also removing them from items dictionary.
+  Locates items that are under the room name of the current location and 
+  adds them to inventory list while also removing them from items dictionary.
   Also prints out item name and description when found
   '''
   global current_location
   global inventory
-  if current_location in items:
-    found_items = items[current_location]["item"]
+  if current_location in database.items:
+    found_items = database.items[current_location]["item"]
     for item in found_items:
       inventory.append(item)
-      item_description = items[current_location]["description"][0]
+      item_description = database.items[current_location]["description"][0]
       spacer()
       print(
         f"You've found a {item} within the {current_location.capitalize()}"
@@ -150,14 +70,14 @@ def find():
       print(f"DESCRIPTION: {item_description}")
       spacer()
       print(f"\nThe {item} has been added to your inventory!")
-      items.pop(current_location)
+      database.items.pop(current_location)
   else:
     print("No items found.")
 # Loops the game for continuous gameplay
 while True:
   print("\n")
   # Displays actions possible by user
-  for action in actions:
+  for action in database.actions:
     print(f"- {action.capitalize()}")
   print("\n")
   # Takes input choice
@@ -185,7 +105,7 @@ while True:
     spacer()
   # If input is none of the above and is an action within the actions
   # list then pritn out bellow
-  elif choice in actions:
+  elif choice in database.actions:
     print(f"You are now {choice.capitalize()}ing!")
   # For invalid action
   else:
