@@ -1,5 +1,21 @@
-actions = ["explore", "search", "inventory", "quit"]
+# ---------------------------------------------
+# Title: Castle Dungeon Explorer Database
+# Assignment: RPG Modules
+# Class: CS 30
+# Date : 03/04/23
+# Coders Name:  Ben Chu
+# Version:'4.0'
+# ---------------------------------------------
+'''
+Current Assignment: RPG Modules
 
+This is the database containing the list and  dictionaries of rooms and items
+'''
+# =============================================================================
+# Actions possible by player list
+actions = ["explore", "search", "inventory", "quit"]
+# Items dictionary, contains the items linked to specific room 
+# and item description
 items = {
   "Courtyard": {
     "item": ["sword"],

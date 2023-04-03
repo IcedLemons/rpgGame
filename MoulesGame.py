@@ -2,7 +2,7 @@
 # Title: Castle Dungeon Explorer
 # Assignment: RPG Modules
 # Class: CS 30
-# Date : 21/03/23
+# Date : 03/04/23
 # Coders Name:  Ben Chu
 # Version:'4.0'
 # ---------------------------------------------
@@ -31,8 +31,7 @@ def movement():
   then moves user into room under the input location the player selected
   '''
   global current_location
-  current_room = next((room for room in database.rooms if room[0] == current_location),
-                      None)
+  current_room = next((room for room in database.rooms if room[0] == current_location), None)
   if current_room is not None:
     for direction in current_room[1]:
       print(f"- {direction.capitalize()}")
