@@ -20,3 +20,8 @@ update - games name
 added - items linked to rooms names
 added - ability to pick up items and move them to a inventory list
 fixed - not displaying invalid direction
+
+v4.0
+Name: RPG - Modules update
+update - moved lists and dictionaries into seperate file
+added - exception handling

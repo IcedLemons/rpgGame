@@ -73,39 +73,42 @@ def find():
   else:
     print("No items found.")
 # Loops the game for continuous gameplay
-while True:
-  print("\n")
-  # Displays actions possible by user
-  for action in database.actions:
-    print(f"- {action.capitalize()}")
-  print("\n")
-  # Takes input choice
-  choice = input("Select a following action: ").lower()
-  print("\n")
-  # If user input is quit then end game
-  if choice == "quit":
-    print("Exiting game!")
-    break
-  # If user input is explore then display current location of player
-  # then run movement() function
-  elif choice == "explore":
-    print("\nSelect a following direction:\n")
-    print(f"You're currently in {current_location.capitalize()}\n")
-    movement()
-  # If input is search then run find() function
-  elif choice == "search":
-    find()
-  # If input is inventory then print out inventory list
-  elif choice == "inventory":
-    print("Inventory:")
-    spacer()
-    for inv in inventory:
-      print(f"- {inv.capitalize()}")
-    spacer()
-  # If input is none of the above and is an action within the actions
-  # list then pritn out bellow
-  elif choice in database.actions:
-    print(f"You are now {choice.capitalize()}ing!")
-  # For invalid action
-  else:
-    print("Please select a valid action!")
+try:
+  while True:
+    print("\n")
+    # Displays actions possible by user
+    for action in database.actions:
+      print(f"- {action.capitalize()}")
+    print("\n")
+    # Takes input choice
+    choice = input("Select a following action: ").lower()
+    print("\n")
+    # If user input is quit then end game
+    if choice == "quit":
+      print("Exiting game!")
+      break
+    # If user input is explore then display current location of player
+    # then run movement() function
+    elif choice == "explore":
+      print("\nSelect a following direction:\n")
+      print(f"You're currently in {current_location.capitalize()}\n")
+      movement()
+    # If input is search then run find() function
+    elif choice == "search":
+      find()
+    # If input is inventory then print out inventory list
+    elif choice == "inventory":
+      print("Inventory:")
+      spacer()
+      for inv in inventory:
+        print(f"- {inv.capitalize()}")
+      spacer()
+    # If input is none of the above and is an action within the actions
+    # list then pritn out bellow
+    elif choice in database.actions:
+      print(f"You are now {choice.capitalize()}ing!")
+    # For invalid action
+    else:
+      print("Please select a valid action!")
+except Exception as e:
+  print("Something went wrong:", e)
