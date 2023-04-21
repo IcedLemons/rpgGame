@@ -14,13 +14,16 @@ and rooms that the player can access,
 it has been updated to house a user inventory.
 '''
 # =============================================================================
-import database
 import pickle
+import database
 # Global variable containging players current location
 current_location = "Main Hall"
 # Empty list to be filled with items player discover
 inventory = []
 # =============================================================================
+# Write Rooms dictionary into external file
+with open('rooms.pickle', 'wb') as handle:
+    pickle.dump(database.rooms, handle, protocol=pickle.HIGHEST_PROTOCOL)
 # Functions
 # Spacer function (for aesthetics)
 def spacer():
@@ -111,8 +114,5 @@ try:
     # For invalid action
     else:
       print("Please select a valid action!")
-    with open('data.pickle', 'wb') as f:
-    # Pickle the 'data' dictionary using the highest protocol available.
-      pickle.dump(database.rooms, f)
 except Exception as e:
   print("Something went wrong:", e)
