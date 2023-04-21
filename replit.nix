@@ -1,5 +1,7 @@
 { pkgs }: {
   deps = [
+    pkgs.# Global variable containging players current location
+    pkgs.# Global variable containging players current location
     pkgs.python310Full
     pkgs.replitPackages.stderred
   ];
